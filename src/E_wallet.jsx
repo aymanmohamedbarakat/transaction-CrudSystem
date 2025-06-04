@@ -13,11 +13,11 @@ export default function E_wallet() {
   const [transactions, setTransactions] = useState([
     {
       id: 1,
-      beforeBalance: 1000,
-      amount: 500,
+      beforeBalance: 0,
+      amount: 1000,
       type: "deposit",
-      afterBalance: 1500,
-      date: "2025-01-10",
+      afterBalance: 1000,
+      date: "2025-06-4",
     },
   ]);
   const [balance, setBalance] = useState(1000);
