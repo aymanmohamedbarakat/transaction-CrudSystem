@@ -1,4 +1,5 @@
 import {
+  ArrowRight,
   DollarSign,
   Trash,
   TrendingDown,
@@ -9,7 +10,16 @@ import { useRef, useState } from "react";
 import { toast } from "react-toastify";
 
 export default function E_wallet() {
-  const [transactions, setTransactions] = useState([]);
+  const [transactions, setTransactions] = useState([
+    {
+      id: 1,
+      beforeBalance: 1000,
+      amount: 500,
+      type: "deposit",
+      afterBalance: 1500,
+      date: "2025-01-10",
+    },
+  ]);
   const [balance, setBalance] = useState(1000);
   const [amount, setAmout] = useState();
   const amountInput = useRef();
@@ -239,7 +249,8 @@ export default function E_wallet() {
                         colSpan={7}
                         className="px-6 py-4 text-center text-lg font-bold text-blue-700"
                       >
-                        Current Balance: {balance}{currncy}
+                        Current Balance: {balance}
+                        {currncy}
                       </td>
                     </tr>
                   </tfoot>
@@ -254,33 +265,51 @@ export default function E_wallet() {
                       key={el.id}
                       className="bg-white rounded-xl shadow-lg border border-slate-200 p-4"
                     >
-                      <div className="flex items-start justify-between mb-3">
-                        <div className="flex items-center space-x-3">
-                          <div className="flex items-center justify-center w-8 h-8 bg-blue-100 text-blue-600 rounded-full text-sm font-medium">
-                            #{el.id}
+                      <div className="flex items-center justify-between bg-gradient-to-r from-blue-50 to-green-50 rounded-lg p-4 mb-3">
+                        <div className="flex items-center space-x-4">
+                          <div className="bg-blue-100 p-3 rounded-full">
+                            <Wallet className="w-5 h-5 text-blue-600" />
                           </div>
                           <div>
-                            <h3 className="font-semibold text-slate-900 capitalize text-lg">
+                            <p className="text-sm text-gray-600">
+                              Previous Balance
+                            </p>
+                            <p className="font-bold text-lg text-gray-900">
                               {el.beforeBalance} {currncy}
-                            </h3>
-                            <div className="flex items-center space-x-2 mt-1">
-                              {el.amount} {currncy}
-                            </div>
+                            </p>
                           </div>
                         </div>
-                        <div className="flex gap-2">
-                          {index === transactions.length - 1 ? (
-                            <button
-                              className="p-2 text-red-600 hover:text-red-700 hover:bg-red-50 rounded-lg transition-colors duration-150"
-                              onClick={() => handleRemove(index)}
+
+                        <div className="flex items-center space-x-2">
+                          <div className="flex items-center bg-white rounded-full px-3 py-1 shadow-sm">
+                            {el.type === "deposit" ? (
+                              <TrendingUp className="w-4 h-4 text-green-500 mr-1" />
+                            ) : (
+                              <TrendingDown className="w-4 h-4 text-red-500 mr-1" />
+                            )}
+                            <span
+                              className={`font-semibold text-sm ${
+                                el.type === "deposit"
+                                  ? "text-green-600"
+                                  : "text-red-600"
+                              }`}
                             >
-                              <Trash size={16} />
-                            </button>
-                          ) : null}
+                              {el.type === "deposit" ? "+" : "-"}
+                              {el.amount} {currncy}
+                            </span>
+                          </div>
+                          <span className="inline-flex items-center px-2 py-1 rounded-full text-sm font-bold bg-blue-100 text-blue-600">#{el.id}</span>
                         </div>
                       </div>
 
                       <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
+                        <div>
+                          <p className="text-slate-600 text-sm mb-1">Amount</p>
+                          <span className="inline-flex items-center px-2 py-1 rounded-full text-sm font-bold bg-blue-100 text-blue-800">
+                            {el.amount} {currncy}
+                          </span>
+                        </div>
+
                         <div>
                           <p className="text-slate-600 text-sm">Type</p>
                           <span
@@ -299,7 +328,7 @@ export default function E_wallet() {
                           </span>
                         </div>
                         <div>
-                          <p className="text-slate-600 text-sm">
+                          <p className="text-slate-600 text-sm mb-1">
                             Before Balance
                           </p>
                           <span className="inline-flex items-center px-2 py-1 rounded-full text-sm font-bold bg-blue-100 text-blue-800">
@@ -307,7 +336,7 @@ export default function E_wallet() {
                           </span>
                         </div>
                         <div>
-                          <p className="text-slate-600 text-sm">
+                          <p className="text-slate-600 text-sm mb-1">
                             After Balance
                           </p>
                           <span className="inline-flex items-center px-2 py-1 rounded-full text-sm font-bold bg-green-100 text-green-800">
@@ -315,7 +344,7 @@ export default function E_wallet() {
                           </span>
                         </div>
                         <div className="col-span-2">
-                          <p className="text-slate-600 text-sm">Date</p>
+                          <p className="text-slate-600 text-sm mb-1">Date</p>
                           <p className="font-bold text-lg text-slate-900">
                             {el.date}
                           </p>
@@ -331,7 +360,8 @@ export default function E_wallet() {
                     <span className="text-xl font-bold text-slate-900">
                       Current Balance:
                       <span className="text-blue-600 ml-1.5">
-                        {balance}{currncy}
+                        {balance}
+                        {currncy}
                       </span>
                     </span>
                   </div>
