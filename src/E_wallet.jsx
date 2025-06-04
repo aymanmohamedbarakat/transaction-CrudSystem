@@ -265,30 +265,35 @@ export default function E_wallet() {
                       key={el.id}
                       className="bg-white rounded-xl shadow-lg border border-slate-200 p-4"
                     >
-                      <div className="flex items-center justify-between bg-gradient-to-r from-blue-50 to-green-50 rounded-lg p-4 mb-3">
-                        <div className="flex items-center space-x-4">
-                          <div className="bg-blue-100 p-3 rounded-full">
-                            <Wallet className="w-5 h-5 text-blue-600" />
+                      <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between bg-gradient-to-r from-blue-50 to-green-50 rounded-lg p-3 sm:p-4 mb-3 gap-3 sm:gap-0">
+                        <div className="flex items-center space-x-3 sm:space-x-4">
+                          <div className="bg-blue-100 p-2 sm:p-3 rounded-full flex-shrink-0">
+                            <Wallet className="w-4 h-4 sm:w-5 sm:h-5 text-blue-600" />
                           </div>
-                          <div>
-                            <p className="text-sm text-gray-600">
+                          <div className="min-w-0 flex-1">
+                            <p className="text-xs sm:text-sm text-gray-600 whitespace-nowrap">
                               Previous Balance
                             </p>
-                            <p className="font-bold text-lg text-gray-900">
-                              {el.beforeBalance} {currncy}
-                            </p>
+                            <div className="flex justify-between">
+                              <p className="font-bold text-base sm:text-lg text-gray-900 truncate">
+                                {el.beforeBalance} {currncy}
+                              </p>
+                              <span className="inline-flex sm:hidden items-center px-2 py-1 rounded-full text-xs sm:text-sm font-bold bg-blue-100 text-blue-600 self-start sm:self-center">
+                                #{el.id}
+                              </span>
+                            </div>
                           </div>
                         </div>
 
-                        <div className="flex items-center space-x-2">
-                          <div className="flex items-center bg-white rounded-full px-3 py-1 shadow-sm">
+                        <div className="flex items-start sm:items-center space-y-2 sm:space-y-0 sm:space-x-2">
+                          <div className="flex items-center bg-white rounded-full px-2 sm:px-3 py-1 shadow-sm w-full sm:w-auto justify-center sm:justify-start">
                             {el.type === "deposit" ? (
-                              <TrendingUp className="w-4 h-4 text-green-500 mr-1" />
+                              <TrendingUp className="w-3 h-3 sm:w-4 sm:h-4 text-green-500 mr-1" />
                             ) : (
-                              <TrendingDown className="w-4 h-4 text-red-500 mr-1" />
+                              <TrendingDown className="w-3 h-3 sm:w-4 sm:h-4 text-red-500 mr-1" />
                             )}
                             <span
-                              className={`font-semibold text-sm ${
+                              className={`font-semibold text-xs sm:text-sm ${
                                 el.type === "deposit"
                                   ? "text-green-600"
                                   : "text-red-600"
@@ -298,7 +303,9 @@ export default function E_wallet() {
                               {el.amount} {currncy}
                             </span>
                           </div>
-                          <span className="inline-flex items-center px-2 py-1 rounded-full text-sm font-bold bg-blue-100 text-blue-600">#{el.id}</span>
+                          <span className="hidden sm:block items-center px-2 py-1 rounded-full text-xs sm:text-sm font-bold bg-blue-100 text-blue-600 self-start sm:self-center">
+                            #{el.id}
+                          </span>
                         </div>
                       </div>
 
