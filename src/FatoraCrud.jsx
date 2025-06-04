@@ -5,7 +5,9 @@ import * as Yup from "yup";
 import { toast } from "react-toastify";
 
 export default function FatoraCrud() {
-  const [phones, setPhones] = useState([]);
+  const [phones, setPhones] = useState([
+    { id: 9, name: "Huawei P50", price: 480, qty: 12 },
+  ]);
   const [modalIndex, setModalIndex] = useState(false);
   const [editModalIndex, setEditModalIndex] = useState(false);
   const [phoneIndex, setPhoneIndex] = useState(0);
@@ -217,7 +219,10 @@ export default function FatoraCrud() {
                     <div className="flex justify-end">
                       <span className="text-xl font-bold text-slate-900">
                         TOTAL:
-                        <span className="text-blue-600"> {total} {currncy}</span>
+                        <span className="text-blue-600">
+                          {" "}
+                          {total} {currncy}
+                        </span>
                       </span>
                     </div>
                   </td>
@@ -354,8 +359,8 @@ export default function FatoraCrud() {
                           <h3 className="font-semibold text-slate-900 capitalize text-lg">
                             {el.name}
                           </h3>
-                          <div className="flex items-center space-x-2 mt-1">
-                            <Smartphone className="w-4 h-4 text-slate-400" />
+                          <div className="flex items-center space-x-1 mt-1">
+                            <Smartphone size={16} className="text-slate-400" />
                             <span className="text-slate-600 text-sm">
                               Phone
                             </span>
@@ -424,7 +429,10 @@ export default function FatoraCrud() {
             <div className="mt-6 bg-gradient-to-r from-slate-50 to-slate-100 rounded-xl p-4 border border-slate-200">
               <div className="text-center">
                 <span className="text-xl font-bold text-slate-900">
-                  TOTAL: <span className="text-blue-600">{total} {currncy}</span>
+                  TOTAL:{" "}
+                  <span className="text-blue-600">
+                    {total} {currncy}
+                  </span>
                 </span>
               </div>
             </div>
