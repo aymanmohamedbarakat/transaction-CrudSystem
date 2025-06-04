@@ -68,7 +68,7 @@ export default function FatoraCrud() {
   };
 
   const total = phones.reduce((acc, el) => acc + el.price * el.qty, 0);
-
+  const currncy = "$";
   return (
     <div className="bg-gray-50 min-h-screen">
       <div className="max-w-6xl mx-auto">
@@ -82,7 +82,7 @@ export default function FatoraCrud() {
                 </div>
                 <div>
                   <h1 className="text-xl sm:text-2xl lg:text-3xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
-                    Fatora CRUD System
+                    Phones CRUD System
                   </h1>
                   <p className="text-slate-600 mt-1 text-sm sm:text-base">
                     Manage your phone inventory
@@ -154,7 +154,7 @@ export default function FatoraCrud() {
                         </td>
                         <td className="px-6 py-4 text-center text-gray-800">
                           <span className="text-slate-900 font-medium">
-                            {el.price} EGP
+                            {el.price} {currncy}
                           </span>
                         </td>
                         <td className="px-6 py-4 text-center text-gray-800">
@@ -164,7 +164,7 @@ export default function FatoraCrud() {
                         </td>
                         <td className="px-6 py-4 text-center text-gray-800 font-semibold">
                           <span className="text-slate-900 font-semibold">
-                            {el.price * el.qty} EGP
+                            {el.price * el.qty} {currncy}
                           </span>
                         </td>
                         <td className="px-6 py-4 text-center text-gray-600">
@@ -217,7 +217,7 @@ export default function FatoraCrud() {
                     <div className="flex justify-end">
                       <span className="text-xl font-bold text-slate-900">
                         TOTAL:
-                        <span className="text-blue-600"> {total} EGP</span>
+                        <span className="text-blue-600"> {total} {currncy}</span>
                       </span>
                     </div>
                   </td>
@@ -275,7 +275,7 @@ export default function FatoraCrud() {
                         </div>
                         <div>
                           <label className="block text-sm font-medium text-gray-700 mb-2">
-                            Price (EGP)
+                            Price ({currncy})
                           </label>
                           <Field
                             name="price"
@@ -382,7 +382,7 @@ export default function FatoraCrud() {
                       <div>
                         <p className="text-slate-600 text-sm">Price</p>
                         <p className="font-semibold text-slate-900">
-                          {el.price} EGP
+                          {el.price} {currncy}
                         </p>
                       </div>
                       <div>
@@ -394,7 +394,7 @@ export default function FatoraCrud() {
                       <div className="col-span-2">
                         <p className="text-slate-600 text-sm">Total</p>
                         <p className="font-bold text-lg text-slate-900">
-                          {el.price * el.qty} EGP
+                          {el.price * el.qty} {currncy}
                         </p>
                       </div>
                     </div>
@@ -424,7 +424,7 @@ export default function FatoraCrud() {
             <div className="mt-6 bg-gradient-to-r from-slate-50 to-slate-100 rounded-xl p-4 border border-slate-200">
               <div className="text-center">
                 <span className="text-xl font-bold text-slate-900">
-                  TOTAL: <span className="text-blue-600">{total} EGP</span>
+                  TOTAL: <span className="text-blue-600">{total} {currncy}</span>
                 </span>
               </div>
             </div>

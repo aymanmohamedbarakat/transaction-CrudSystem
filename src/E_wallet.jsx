@@ -9,13 +9,13 @@ import { useRef, useState } from "react";
 import { toast } from "react-toastify";
 
 export default function E_wallet() {
+  const [transactions, setTransactions] = useState([]);
   const [balance, setBalance] = useState(1000);
   const [amount, setAmout] = useState();
   const amountInput = useRef();
+  const currncy = "$";
 
-  const [transactions, setTransactions] = useState([]);
-
-  const Deposite = () => {
+  const Deposit = () => {
     let amount = +amountInput.current.value;
 
     if (!amount) {
@@ -67,7 +67,7 @@ export default function E_wallet() {
     }
   };
 
-  const handleremove = (index) => {
+  const handleRemove = (index) => {
     let copy = [...transactions];
     copy.splice(index, 1);
     setTransactions(copy);
@@ -94,7 +94,9 @@ export default function E_wallet() {
                 Current Balance
               </h2>
             </div>
-            <p className="text-3xl font-bold text-green-600">{balance} EGP</p>
+            <p className="text-3xl font-bold text-green-600">
+              {balance} {currncy}
+            </p>
           </div>
 
           <div className="bg-white rounded-2xl shadow-lg p-6 border border-gray-100">
@@ -105,7 +107,7 @@ export default function E_wallet() {
               </h3>
             </div>
             <p className="text-3xl font-bold text-blue-600">
-              {amount || 0} EGP
+              {amount || 0} {currncy}
             </p>
           </div>
         </div>
@@ -115,7 +117,7 @@ export default function E_wallet() {
           <h3 className="text-xl font-semibold text-gray-800 mb-6">
             Make a Transaction
           </h3>
-          <div className="flex flex-col md:flex-row gap-4">
+          <div className="flex flex-col sm:flex-row gap-4">
             <input
               type="number"
               ref={amountInput}
@@ -124,9 +126,9 @@ export default function E_wallet() {
               step="0.01"
               className="flex-1 px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none text-lg"
             />
-            <div className="flex gap-3">
+            <div className="flex flex-col sm:flex-row gap-3">
               <button
-                onClick={Deposite}
+                onClick={Deposit}
                 className="flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-green-500 to-green-600 text-white rounded-lg hover:from-green-600 hover:to-green-700 transition-all duration-200 font-semibold shadow-md hover:shadow-lg"
               >
                 <TrendingUp className="w-5 h-5" />
@@ -153,36 +155,34 @@ export default function E_wallet() {
 
           {transactions.length ? (
             <div className="overflow-x-auto">
-              <table className="w-full text-sm">
-                <thead className="bg-gray-50">
-                  <tr>
-                    <th className="px-6 py-4 text-left text-sm font-semibold text-gray-700">
-                      ID
-                    </th>
-                    <th className="px-6 py-4 text-left text-sm font-semibold text-gray-700">
-                      Before
-                    </th>
-                    <th className="px-6 py-4 text-left text-sm font-semibold text-gray-700">
-                      Amount
-                    </th>
-                    <th className="px-6 py-4 text-left text-sm font-semibold text-gray-700">
-                      Type
-                    </th>
-                    <th className="px-6 py-4 text-left text-sm font-semibold text-gray-700">
-                      After
-                    </th>
-                    <th className="px-6 py-4 text-left text-sm font-semibold text-gray-700">
-                      Date
-                    </th>
-                    <th className="px-6 py-4 text-left text-sm font-semibold text-gray-700">
-                      Action
-                    </th>
-                  </tr>
-                </thead>
-              </table>
-
-              <div className="max-h-69 overflow-y-auto">
+              {/* Desktop Table View */}
+              <div className="hidden lg:block">
                 <table className="w-full text-sm">
+                  <thead className="bg-gray-50">
+                    <tr>
+                      <th className="px-6 py-4 text-left text-sm font-semibold text-gray-700">
+                        ID
+                      </th>
+                      <th className="px-6 py-4 text-left text-sm font-semibold text-gray-700">
+                        Before
+                      </th>
+                      <th className="px-6 py-4 text-left text-sm font-semibold text-gray-700">
+                        Amount
+                      </th>
+                      <th className="px-6 py-4 text-left text-sm font-semibold text-gray-700">
+                        Type
+                      </th>
+                      <th className="px-6 py-4 text-left text-sm font-semibold text-gray-700">
+                        After
+                      </th>
+                      <th className="px-6 py-4 text-left text-sm font-semibold text-gray-700">
+                        Date
+                      </th>
+                      <th className="px-6 py-4 text-left text-sm font-semibold text-gray-700">
+                        Action
+                      </th>
+                    </tr>
+                  </thead>
                   <tbody className="divide-y divide-gray-200">
                     {transactions.map((el, index) => (
                       <tr
@@ -193,10 +193,10 @@ export default function E_wallet() {
                           #{el.id}
                         </td>
                         <td className="px-6 py-4 text-sm text-gray-600">
-                          {el.beforeBalance} EGP
+                          {el.beforeBalance} {currncy}
                         </td>
                         <td className="px-6 py-4 text-sm font-semibold text-gray-900">
-                          {el.amount} EGP
+                          {el.amount} {currncy}
                         </td>
                         <td className="px-6 py-4">
                           <span
@@ -215,7 +215,7 @@ export default function E_wallet() {
                           </span>
                         </td>
                         <td className="px-6 py-4 text-sm font-medium text-gray-900">
-                          {el.afterBalance} EGP
+                          {el.afterBalance} {currncy}
                         </td>
                         <td className="px-6 py-4 text-sm text-gray-600">
                           {el.date}
@@ -223,7 +223,7 @@ export default function E_wallet() {
                         <td className="px-6 py-4">
                           {index === transactions.length - 1 ? (
                             <button
-                              onClick={() => handleremove(index)}
+                              onClick={() => handleRemove(index)}
                               className="p-2 text-red-500 hover:bg-red-50 rounded-lg transition-colors"
                             >
                               <Trash size={16} />
@@ -233,21 +233,110 @@ export default function E_wallet() {
                       </tr>
                     ))}
                   </tbody>
+                  <tfoot className="bg-gradient-to-r from-blue-50 to-indigo-50">
+                    <tr>
+                      <td
+                        colSpan={7}
+                        className="px-6 py-4 text-center text-lg font-bold text-blue-700"
+                      >
+                        Current Balance: {balance} {currncy}
+                      </td>
+                    </tr>
+                  </tfoot>
                 </table>
               </div>
 
-              <table className="w-full text-sm">
-                <tfoot className="bg-gradient-to-r from-blue-50 to-indigo-50">
-                  <tr>
-                    <td
-                      colSpan={7}
-                      className="px-6 py-4 text-center text-lg font-bold text-blue-700"
+              {/* Mobile Card View */}
+              <div className="block lg:hidden p-4">
+                <div className="space-y-4">
+                  {transactions.map((el, index) => (
+                    <div
+                      key={el.id}
+                      className="bg-white rounded-xl shadow-lg border border-slate-200 p-4"
                     >
-                      Current Balance: {balance} EGP
-                    </td>
-                  </tr>
-                </tfoot>
-              </table>
+                      <div className="flex items-start justify-between mb-3">
+                        <div className="flex items-center space-x-3">
+                          <div className="flex items-center justify-center w-8 h-8 bg-blue-100 text-blue-600 rounded-full text-sm font-medium">
+                            #{el.id}
+                          </div>
+                          <div>
+                            <h3 className="font-semibold text-slate-900 capitalize text-lg">
+                              {el.beforeBalance} {currncy}
+                            </h3>
+                            <div className="flex items-center space-x-2 mt-1">
+                              {el.amount} {currncy}
+                            </div>
+                          </div>
+                        </div>
+                        <div className="flex gap-2">
+                          {index === transactions.length - 1 ? (
+                            <button
+                              className="p-2 text-red-600 hover:text-red-700 hover:bg-red-50 rounded-lg transition-colors duration-150"
+                              onClick={() => handleRemove(index)}
+                            >
+                              <Trash size={16} />
+                            </button>
+                          ) : null}
+                        </div>
+                      </div>
+
+                      <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
+                        <div>
+                          <p className="text-slate-600 text-sm">Type</p>
+                          <span
+                            className={`inline-flex items-center gap-1 px-3 py-1 rounded-full text-xs font-bold ${
+                              el.type === "withdraw"
+                                ? "bg-red-100 text-red-700"
+                                : "bg-green-100 text-green-700"
+                            }`}
+                          >
+                            {el.type === "withdraw" ? (
+                              <TrendingDown className="w-3 h-3" />
+                            ) : (
+                              <TrendingUp className="w-3 h-3" />
+                            )}
+                            {el.type}
+                          </span>
+                        </div>
+                        <div>
+                          <p className="text-slate-600 text-sm">
+                            Before Balance
+                          </p>
+                          <span className="inline-flex items-center px-2 py-1 rounded-full text-sm font-bold bg-blue-100 text-blue-800">
+                            {el.beforeBalance} {currncy}
+                          </span>
+                        </div>
+                        <div>
+                          <p className="text-slate-600 text-sm">
+                            After Balance
+                          </p>
+                          <span className="inline-flex items-center px-2 py-1 rounded-full text-sm font-bold bg-green-100 text-green-800">
+                            {el.afterBalance} {currncy}
+                          </span>
+                        </div>
+                        <div className="col-span-2">
+                          <p className="text-slate-600 text-sm">Date</p>
+                          <p className="font-bold text-lg text-slate-900">
+                            {el.date}
+                          </p>
+                        </div>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+
+                {/* Mobile Total */}
+                <div className="mt-6 bg-gradient-to-r from-slate-50 to-slate-100 rounded-xl p-4 border border-slate-200">
+                  <div className="text-center">
+                    <span className="text-xl font-bold text-slate-900">
+                      Current Balance:
+                      <span className="text-blue-600">
+                        {balance} {currncy}
+                      </span>
+                    </span>
+                  </div>
+                </div>
+              </div>
             </div>
           ) : (
             <div className="px-6 py-12 text-center">
