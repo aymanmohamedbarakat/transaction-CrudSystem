@@ -330,8 +330,8 @@ export default function E_wallet() {
                   <div className="text-center">
                     <span className="text-xl font-bold text-slate-900">
                       Current Balance:
-                      <span className="text-blue-600 ml-3">
-                        {balance} {currncy}
+                      <span className="text-blue-600 ml-1.5">
+                        {balance}{currncy}
                       </span>
                     </span>
                   </div>
