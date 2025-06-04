@@ -6,16 +6,15 @@ import { toast } from "react-toastify";
 
 export default function FatoraCrud() {
   const [phones, setPhones] = useState([]);
+  const [modalIndex, setModalIndex] = useState(false);
+  const [editModalIndex, setEditModalIndex] = useState(false);
+  const [phoneIndex, setPhoneIndex] = useState(0);
 
   const phoneSchema = Yup.object({
     name: Yup.string(),
     price: Yup.number(),
     qty: Yup.number(),
   });
-
-  const [modalIndex, setModalIndex] = useState(false);
-  const [editModalIndex, setEditModalIndex] = useState(false);
-  const [phoneIndex, setPhoneIndex] = useState(0);
 
   const handleRemove = (phoneIndex) => {
     const removedPhoneName = phones[phoneIndex].name;

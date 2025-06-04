@@ -115,7 +115,7 @@ export default function E_wallet() {
           <h3 className="text-xl font-semibold text-gray-800 mb-6">
             Make a Transaction
           </h3>
-          <div className="flex flex-col sm:flex-row gap-4">
+          <div className="flex flex-col md:flex-row gap-4">
             <input
               type="number"
               ref={amountInput}
