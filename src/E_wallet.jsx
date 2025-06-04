@@ -239,7 +239,7 @@ export default function E_wallet() {
                         colSpan={7}
                         className="px-6 py-4 text-center text-lg font-bold text-blue-700"
                       >
-                        Current Balance: {balance} {currncy}
+                        Current Balance: {balance}{currncy}
                       </td>
                     </tr>
                   </tfoot>
@@ -330,7 +330,7 @@ export default function E_wallet() {
                   <div className="text-center">
                     <span className="text-xl font-bold text-slate-900">
                       Current Balance:
-                      <span className="text-blue-600">
+                      <span className="text-blue-600 ml-3">
                         {balance} {currncy}
                       </span>
                     </span>
