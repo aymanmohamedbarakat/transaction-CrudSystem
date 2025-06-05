@@ -281,12 +281,22 @@ export default function E_wallet() {
                               <span className="inline-flex sm:hidden items-center px-2 py-1 rounded-full text-xs sm:text-sm font-bold bg-blue-100 text-blue-600 self-start sm:self-center">
                                 #{el.id}
                               </span>
+                              <span className="inline-flex sm:hidden items-center px-2 py-1 rounded-full text-xs sm:text-sm font-bold bg-red-100 text-red-600 self-start sm:self-center">
+                                {index === transactions.length - 1 ? (
+                                  <button
+                                    onClick={() => handleRemove(index)}
+                                    className=" text-red-600 hover:text-red-500 rounded-full transition-colors"
+                                  >
+                                    <Trash size={16} />
+                                  </button>
+                                ) : null}
+                              </span>
                             </div>
                           </div>
                         </div>
 
                         <div className="flex items-start sm:items-center space-y-2 sm:space-y-0 sm:space-x-2">
-                          <div className="flex items-center bg-white rounded-full px-2 sm:px-3 py-1 shadow-sm w-full sm:w-auto justify-center sm:justify-start">
+                          <div className="flex items-center bg-white rounded-full px-3 sm:px-3 py-3 shadow-sm w-full sm:w-auto justify-center sm:justify-start">
                             {el.type === "deposit" ? (
                               <TrendingUp className="w-3 h-3 sm:w-4 sm:h-4 text-green-500 mr-1" />
                             ) : (
@@ -306,13 +316,23 @@ export default function E_wallet() {
                           <span className="hidden sm:block items-center px-2 py-1 rounded-full text-xs sm:text-sm font-bold bg-blue-100 text-blue-600 self-start sm:self-center">
                             #{el.id}
                           </span>
+                          <span className="hidden sm:block items-center px-2 py-1 rounded-full text-xs sm:text-sm font-bold bg-red-100 text-red-600 self-start sm:self-center">
+                            {index === transactions.length - 1 ? (
+                              <button
+                                onClick={() => handleRemove(index)}
+                                className="mt-1 text-red-600 hover:text-red-500 rounded-full transition-colors"
+                              >
+                                <Trash size={16} />
+                              </button>
+                            ) : null}
+                          </span>
                         </div>
                       </div>
 
                       <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
                         <div>
                           <p className="text-slate-600 text-sm mb-1">Amount</p>
-                          <span className="inline-flex items-center px-2 py-1 rounded-full text-sm font-bold bg-blue-100 text-blue-800">
+                          <span className="inline-flex items-center px-2 py-1 rounded-full text-sm font-bold bg-indigo-100 text-indigo-600">
                             {el.amount} {currncy}
                           </span>
                         </div>
@@ -346,7 +366,13 @@ export default function E_wallet() {
                           <p className="text-slate-600 text-sm mb-1">
                             After Balance
                           </p>
-                          <span className="inline-flex items-center px-2 py-1 rounded-full text-sm font-bold bg-green-100 text-green-800">
+                          <span
+                            className={`inline-flex items-center px-2 py-1 rounded-full text-sm font-bold ${
+                              el.type === "deposit"
+                                ? "bg-green-100 text-green-800"
+                                : "bg-red-100 text-red-800"
+                            } `}
+                          >
                             {el.afterBalance} {currncy}
                           </span>
                         </div>
