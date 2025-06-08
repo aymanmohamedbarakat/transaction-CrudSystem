@@ -78,7 +78,7 @@ export default function E_wallet() {
   };
 
   const handleRemove = (index) => {
-    let copy = [...transactions];
+    let copy = [...transactions]; - ` `
     copy.splice(index, 1);
     setTransactions(copy);
   };
@@ -338,7 +338,7 @@ export default function E_wallet() {
                         </div>
 
                         <div>
-                          <p className="text-slate-600 text-sm">Type</p>
+                          <p className="text-slate-600 text-sm mb-1">Type</p>
                           <span
                             className={`inline-flex items-center gap-1 px-3 py-1 rounded-full text-xs font-bold ${
                               el.type === "withdraw"
