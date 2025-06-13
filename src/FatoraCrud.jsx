@@ -6,7 +6,7 @@ import { toast } from "react-toastify";
 
 export default function FatoraCrud() {
   const [phones, setPhones] = useState([
-    { id: 9, name: "Huawei P50", price: 480, qty: 12 },
+    { id: 1, name: "Huawei P50", price: 480, qty: 12 },
   ]);
   const [modalIndex, setModalIndex] = useState(false);
   const [editModalIndex, setEditModalIndex] = useState(false);
